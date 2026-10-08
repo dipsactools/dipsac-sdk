@@ -1,0 +1,16 @@
+# Python
+python/.venv/
+python/dist/
+python/build/
+*.egg-info/
+__pycache__/
+.pytest_cache/
+
+# JavaScript
+js/node_modules/
+js/dist/
+*.tgz
+
+# never a key
+.env
+.env.*

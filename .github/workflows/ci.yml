@@ -1,0 +1,60 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  generated:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      # The methods of both libraries are generated from the schema snapshot.
+      # This fails when somebody edited one by hand, or changed the schema and
+      # did not run the generator.
+      - run: python codegen/generate.py --check
+
+  python:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.11", "3.13"]
+    defaults:
+      run: { working-directory: python }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "${{ matrix.python-version }}" }
+      - run: pip install -e ".[dev]"
+      - run: pytest -q
+      - run: python -m build && python -m twine check dist/*
+
+  js:
+    runs-on: ubuntu-latest
+    defaults:
+      run: { working-directory: js }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: npm ci
+      - run: npm test
+
+  # The library says it runs on Node 18. The test command above needs Node 22
+  # (--test-force-exit), so the older runtimes run the same test file without it.
+  js-older-node:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ["18", "20"]
+    defaults:
+      run: { working-directory: js }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "${{ matrix.node-version }}" }
+      - run: npm ci
+      - run: npm run build
+      - run: node --test tests/client.test.mjs

@@ -1,0 +1,62 @@
+{
+  "name": "dipsac",
+  "version": "0.1.0",
+  "description": "The official JavaScript and TypeScript library for the DIPSAC API: PDF, image, audio, video and SEO tools, and the AI Voice Studio.",
+  "license": "MIT",
+  "author": "DIPSAC <contact@dipsac.com>",
+  "homepage": "https://dipsac.com/dashboard/reference",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khalidPathan7733/dipsac-sdk.git",
+    "directory": "js"
+  },
+  "bugs": {
+    "url": "https://github.com/khalidPathan7733/dipsac-sdk/issues"
+  },
+  "keywords": [
+    "dipsac",
+    "pdf",
+    "image",
+    "audio",
+    "video",
+    "text-to-speech",
+    "transcription",
+    "api",
+    "sdk"
+  ],
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "npm run build && node --test --test-force-exit tests/client.test.mjs",
+    "prepublishOnly": "npm test"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}
