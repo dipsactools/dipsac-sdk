@@ -1,10 +1,10 @@
-# Publishes the Python package to PyPI when a tag like python-v0.1.0 is pushed.
+# Publishes the Python package to PyPI when a tag like python-v0.1.1 is pushed.
 #
 # NO TOKEN IS STORED. PyPI trusts this workflow in this repository directly
 # ("trusted publishing"). One-time setup on pypi.org, Account -> Publishing ->
 # "Add a new pending publisher":
 #     PyPI project name   dipsac
-#     Owner               khalidPathan7733
+#     Owner               dipsactools
 #     Repository name     dipsac-sdk
 #     Workflow name       publish-python.yml
 #     Environment name    pypi

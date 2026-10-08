@@ -63,10 +63,16 @@ server does not have, so `client.ai` is covered by unit tests only.
 Publishing is done by GitHub Actions with trusted publishing: no token is stored
 anywhere.
 
-- Python: push a tag `python-v0.1.0` (the version in `_version.py`).
-- npm: push a tag `js-v0.1.0` (the version in `package.json`).
+- Python: push a tag `python-v<version>`, the version in `_version.py`, e.g. `python-v0.1.1`.
+- npm: push a tag `js-v<version>`, the version in `package.json`, e.g. `js-v0.1.1`.
 
 A version number can be published once, ever. Bump it before tagging.
+
+npm holds a brand-new package behind a placeholder first. On 2026-10-08 the first
+`npm publish` of this package showed a public page reading "Temporary Holding
+Version", at version `0.0.0-stage`, for three minutes before `0.1.0` appeared.
+That page is npm's own and is not a failed publish; `npm view dipsac version` is
+what says which version is live.
 
 ## License
 

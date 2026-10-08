@@ -33,8 +33,8 @@ dev = ["pytest>=8", "pytest-asyncio>=0.23", "build>=1.2", "twine>=5"]
 [project.urls]
 Homepage = "https://dipsac.com"
 Documentation = "https://dipsac.com/dashboard/reference"
-Source = "https://github.com/khalidPathan7733/dipsac-sdk"
-Issues = "https://github.com/khalidPathan7733/dipsac-sdk/issues"
+Source = "https://github.com/dipsactools/dipsac-sdk"
+Issues = "https://github.com/dipsactools/dipsac-sdk/issues"
 
 [tool.hatch.version]
 path = "src/dipsac/_version.py"

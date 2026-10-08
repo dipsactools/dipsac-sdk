@@ -1,17 +1,17 @@
 {
   "name": "dipsac",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The official JavaScript and TypeScript library for the DIPSAC API: PDF, image, audio, video and SEO tools, and the AI Voice Studio.",
   "license": "MIT",
   "author": "DIPSAC <contact@dipsac.com>",
   "homepage": "https://dipsac.com/dashboard/reference",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/khalidPathan7733/dipsac-sdk.git",
+    "url": "git+https://github.com/dipsactools/dipsac-sdk.git",
     "directory": "js"
   },
   "bugs": {
-    "url": "https://github.com/khalidPathan7733/dipsac-sdk/issues"
+    "url": "https://github.com/dipsactools/dipsac-sdk/issues"
   },
   "keywords": [
     "dipsac",
