@@ -60,13 +60,25 @@ server does not have, so `client.ai` is covered by unit tests only.
 
 ## Releasing
 
-Publishing is done by GitHub Actions with trusted publishing: no token is stored
-anywhere.
+A version number can be published once, ever. Bump it before releasing.
+
+Each registry has a workflow that publishes when a tag is pushed, by trusted
+publishing: no token is stored anywhere.
 
 - Python: push a tag `python-v<version>`, the version in `_version.py`, e.g. `python-v0.1.1`.
 - npm: push a tag `js-v<version>`, the version in `package.json`, e.g. `js-v0.1.1`.
 
-A version number can be published once, ever. Bump it before tagging.
+**A workflow cannot publish until its registry has been told, once, to trust
+it.** The values to enter are at the top of each file
+(`.github/workflows/publish-python.yml`, `publish-npm.yml`). On 2026-10-08
+neither registry had been told: the Python workflow passed its tests and PyPI
+refused the upload as `invalid-publisher`, and 0.1.1 went up to both registries
+by hand:
+
+```bash
+cd python && python -m build && twine upload dist/*   # asks for a PyPI token
+cd js && npm publish --access public                  # runs the tests first; needs `npm login`
+```
 
 npm holds a brand-new package behind a placeholder first. On 2026-10-08 the first
 `npm publish` of this package showed a public page reading "Temporary Holding
